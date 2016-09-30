@@ -1,6 +1,5 @@
 package groupFiles;
 
-
 public class JenniberJokes implements Chatbot{
 	private String jokeResponse;
 	private boolean inJokeMode;
@@ -46,6 +45,8 @@ public class JenniberJokes implements Chatbot{
 	private void printResponse(int responseSelection) {
 		if(jokeCount>4){
 			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[responseSelection]);
+		}else if(jokeCount>0 && jokeCount<4){
+			Main.print("No. Guess Again. "+jokesQuestions[responseSelection]);
 		}else{
 			Main.print(jokesQuestions[responseSelection]);
 		}
