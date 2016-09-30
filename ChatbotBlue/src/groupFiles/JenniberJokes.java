@@ -11,14 +11,16 @@ public class JenniberJokes implements Chatbot{
 	private String[] jokesAnswers = {"Spooketi","She was a cover ghoul.","With a pumpkin patch."};
 	
 	public JenniberJokes(){
-		
+		jokeCount = 0;
 	}
 	
 	public void talk(){
 		inJokeMode = true;
+		int responseSelection = (int)(Math.random()*jokesQuestions.length);
+		
 		while(inJokeMode){
 			jokeCount++;
-			printResponse(); //helper method
+			printResponse(responseSelection); //helper method
 			jokeResponse = Main.promptInput();
 			//negate use !
 			if(!isTriggered(jokeResponse)){
@@ -30,27 +32,20 @@ public class JenniberJokes implements Chatbot{
 
 	
 	public boolean isTriggered(String userInput) {
-		if(Main.findKeyword(userInput, "ghosts", 0)>=0){
-			return true;
-		}
-		if(Main.findKeyword(userInput, "ghoul", 0)>=0){
-			return true;
-		}
-		if(Main.findKeyword(userInput, "ghost", 0)>=0){
-			return true;
+		for(int i=0; i>jokesAnswers.length; i++){
+			if(Main.findKeyword(userInput, jokesAnswers[i], 0)>=0){
+				return true;
+			}
 		}
 			
 		return false;
 	}
 	
-	private void printResponse() {
+	private void printResponse(int responseSelection) {
 		if(jokeCount>4){
-			int responseSelection = (int)(Math.random()*jokesQuestions.length);
-			
-			Main.print(jokesQuestions[responseSelection]);
+			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[responseSelection]);
 		}else{
-			int responseSelection = (int)(Math.random()*jokesQuestions.length);
-			Main.print(jokesAnswers[responseSelection]);
+			Main.print(jokesQuestions[responseSelection]);
 		}
 		
 	}
