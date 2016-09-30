@@ -2,47 +2,61 @@ package groupFiles;
 
 import java.util.Scanner;
 
-public class AnthonyIdentify {
-	static Scanner input;
-	static String user;
+import chatbot.AnthonyMain;
 
-	public static void main(String[] args) {
-		//demonstrateStringMethods();
-		createFields();
-		promptName();
-		promptForever();
+
+
+public class AnthonyIdentify implements Chatbot{
+	
+	private boolean inLoop;
+	int topicSwitch = 0;
+	private String topic;
+	
+	
+	
+	private String[] changeOfSubject =
+		{"You've been talking a lot about" +
+				topic + ". Why don't we change the subject?",
+		"I'm bored with "+ topic + 
+			". Can we please talk about something else?"+
+			" Turtles perhaps?",
+		"Could we get off of the topic of "+
+			topic + "?"};
+	
+	
+	
+	public void isTriggered(){
+		
+		if((int) topicSwitch >= 4){
+			System.out.println((Math.random()*changeOfSubject.length) + 1);
 		}
-	
-	public static void promptName() {
-		print("enter your name");
-		user = input.nextLine();
-		print("Glad to meet you, "+user + "."
-				+"\nFor the rest of the time," 
-				+"\nI will call you "+user
-				+".\nYou may call me Computer."
-				+"\nWe should become friends." );
-	}
-	
-	public static void promptForever(){
-		while(true){
-			promptInput();
-		}
-	}
-	
-	public static void promptInput(){
-		print("Please type something "+user+".");
-		String userInput = input.nextLine();
-		print("Congratulations!You typed: "+userInput);
-	}
-	
-	public static void createFields(){
-		input = new Scanner(System.in);
-		user = "";
-	}
-	
-	public static void print(String s){
-		System.out.println(s);
 		
 	}
-	
+
+
+
+	@Override
+	public void talk() {
+		inLoop = true;
+		while(inLoop){
+			Main.print("(Type 'quit' to go back.)");
+			//static call on promptInput method from 
+			//AnthonyMain class
+			topic = Main.promptInput(); 
+			if(Main.findKeyword(topic, subject, 0) >= 0){
+				inLoop = false;
+				Main.promptForever();
+			}
+			Main.print("that's my favorite part "
+					+ "about school");
+		}	
+	}
+
+
+
+	@Override
+	public boolean isTriggered(String userInput) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
