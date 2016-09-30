@@ -15,7 +15,7 @@ public class AnthonyIdentify implements Chatbot{
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
 						topic + "?"};
-	
+	//in progress
 	@Override
 	public void talk() {
 		inLoop = true;
