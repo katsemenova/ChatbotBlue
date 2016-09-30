@@ -15,7 +15,7 @@ public class AnthonyIdentify implements Chatbot{
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
 						topic + "?"};
-	//possible for loop
+	//possible for loop maybe
 	@Override
 	public void talk() {
 		inLoop = true;
