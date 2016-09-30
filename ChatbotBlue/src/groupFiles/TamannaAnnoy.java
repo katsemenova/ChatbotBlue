@@ -25,7 +25,7 @@ public class TamannaAnnoy implements Chatbot{
 		questionCount = 0;
 	}
 	
-	public void talk() {
+	public void talk(){
 		
 		inResponseLoop = true;
 		responseBefore = " ";
