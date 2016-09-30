@@ -63,7 +63,6 @@ public class TamannaAnnoy implements Chatbot{
 		if (responseBefore == responseAfter){
 			return true;
 		}	
-		
 		return false;
 	}
 }
