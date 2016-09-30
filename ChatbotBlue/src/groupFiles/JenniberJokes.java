@@ -16,6 +16,7 @@ public class JenniberJokes implements Chatbot{
 	public void talk(){
 		inJokeMode = true;
 		while(inJokeMode){
+			jokeCount++;
 			printResponse(); //helper method
 			jokeResponse = Main.promptInput();
 			//negate use !
@@ -42,13 +43,13 @@ public class JenniberJokes implements Chatbot{
 	}
 	
 	private void printResponse() {
-		if(helloCount>4){
+		if(jokeCount>4){
 			int responseSelection = (int)(Math.random()*jokesQuestions.length);
 			
-			JenniberMain.print(jokeResponse[responseSelection]);
+			Main.print(jokesQuestions[responseSelection]);
 		}else{
-			int responseSelection = (int)(Math.random()*calmResponses.length);
-			JenniberMain.print(calmResponses[responseSelection]);
+			int responseSelection = (int)(Math.random()*jokesQuestions.length);
+			Main.print(jokesAnswers[responseSelection]);
 		}
 		
 	}
