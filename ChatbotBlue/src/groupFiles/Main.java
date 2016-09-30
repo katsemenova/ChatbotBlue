@@ -8,48 +8,63 @@ public class Main {
 	static String user;
 	static String response; 
 	static boolean inMainLoop; 
+	
 	//list all the chatbots available under this class
 	//add group chatbots below see example
-//	static Chatbot school; 
+	//static Chatbot school;
+	
+	static Chatbot anthony;
+	static Chatbot tamanna;
+	static Chatbot jenniber;
+	static Chatbot kat;
 
 	public static void main(String[] args) {
-//		demonstrateStringMethods();
+    //demonstrateStringMethods();
 		createFields();
 		promptName();
 		promptForever();
-		
 	}
+	
 	public static void promptName(){
-	print("Enter your name");
-	user=input.nextLine();
-	print("Glad to meet you "+user+". For the rest of time I will call you " +user +". You may call me Computer. We will be friends.");
+		print("Enter your name");
+		user=input.nextLine();
+		print("Glad to meet you "+user+". For the rest of time I will call you " +user +". You may call me Computer. We will be friends.");
 	}
 
 	public static void promptForever() {
 		inMainLoop =true;
 		while(inMainLoop){
-			print("Hi, "+user+ ". How are you?");
+			print("Hi, "+ user + ". How are you?");
 			response = promptInput();
 			if(findKeyword(response, "good", 0)>=0)
 				print("That's wonderful. So glad that you feel good.");
-//			else if(school.isTriggered(userResponse)){
-//				print("School is great. Tell me more.");
-//				inMainLoop=false;
-//				school.talk();
-//			}
+			else if(tamanna.isTriggered(response)){
+				inMainLoop=false;
+				tamanna.talk();
+			}else if(anthony.isTriggered(response)){
+				inMainLoop=false;
+				anthony.talk();
+			}else if(jenniber.isTriggered(response)){
+				inMainLoop=false;
+				jenniber.talk();
+			}
 			else 
 				print("I don't understand");
 		}
 	}
+	
 	public static int findKeyword(String searchString, String keyword, int startPosition) {
+		
 		//delete white space on outside
 		searchString=searchString.trim();
 		searchString=searchString.toLowerCase();
 		keyword=keyword.toLowerCase();
+		
 		//find first position of key word
 		int psn=searchString.indexOf(keyword);
 		System.out.println("keyword found at "+psn);
 		System.out.println("string is "+searchString);
+	  
 		//keep searching until keyword found
 		while (psn>=0){
 			//assume preceded and followed by space
@@ -71,41 +86,54 @@ public class Main {
 		}                                                      
 		return -1;
 	}
+	
 	/**helper method thats assigned for helping a larger method, generally they are private because they
 	 *are only used by the methods they are helping
 	 *@param search string
 	 *@param psn 
 	 *@return "true" if no negation words
 	 */
+	
 	private static boolean noNegations(String searchString, int psn) {
+		
 		//check to see if the word "no" is in front of psn
 		//check to see if 3 spaces in front then check if no is there
 		if(psn-3>=0&&searchString.substring(psn-3,psn).equals("no ")){
 			return false;
 		}
+		
 		//check for not
 		if(psn-6>=0&&searchString.substring(psn-3,psn).equals("never ")){
 			return false;
 		}
+		
 		if(psn-4>=0&&searchString.substring(psn-3,psn).equals("not ")){
 			return false;
 		}
+		
 		if(psn-4>=0&&searchString.substring(psn-3,psn).equals("n't ")){
 			return false;
 		}
-		return true;
-		
+		return true;	
 	}
+	
 	public static String promptInput(){
 		String userInput = input.nextLine();
 		return userInput;
 	}
+	
 	public static void createFields(){
 		input=new Scanner(System.in);
 		user= "";
-//		initialize group chatbot
-//		school= new KatSchool(); 
+		
+		//initialize group chatbot
+		//school= new KatSchool();
+		
+		tamanna = new TamannaAnnoy();
+		jenniber = new JenniberJokes();
+		anthony = new AnthonyIdentify();
 	}
+	
 	public static void demonstrateStringMethods(){
 		String text1 = new String("Hello World");
 		String text2 = "Hello World";
@@ -122,6 +150,7 @@ public class Main {
 			print("word1 comes before word2");
 		}
 	}
+	
 	public static void print(String s){
 		 String printString = "";
 		 int cutoff = 25;
@@ -158,5 +187,4 @@ public class Main {
 		 }
 		 System.out.print(printString);
 		 }
-
 	}
