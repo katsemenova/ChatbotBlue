@@ -41,6 +41,8 @@ public class JenniberJokes implements Chatbot{
 		return false;
 	}
 	
+	//Decide how jokes will be triggered
+	
 	private void printResponse(int responseSelection) {
 		if(jokeCount>4){
 			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[responseSelection]);
