@@ -74,7 +74,7 @@ public class Main {
 			if(psn>0){
 				before=searchString.substring(psn-1, psn);
 			}
-			//check for characted after keyword
+			//check for character after keyword
 			if(psn+keyword.length()<searchString.length()){
 				after=searchString.substring(psn+keyword.length(),psn+keyword.length()+1);
 			}
