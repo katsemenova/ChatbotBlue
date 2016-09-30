@@ -15,23 +15,19 @@ public class AnthonyIdentify implements Chatbot{
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
 						topic + "?"};
-	//in progress
+	
 	@Override
 	public void talk() {
 		inLoop = true;
 		while(inLoop){
 			Main.print("(Type 'quit' to go back.)");
 			//static call on promptInput method from 
-			//AnthonyMain class
+			//Main class
 			topic = Main.promptInput(); 
-			if(Main.findKeyword(topic, subject, 0) >= 0){
-				inLoop = false;
 				Main.promptForever();
 			}
-			Main.print("that's my favorite part "
-					+ "about school");
+
 		}	
-	}
 
 	@Override
 	public boolean isTriggered(String userInput) {
