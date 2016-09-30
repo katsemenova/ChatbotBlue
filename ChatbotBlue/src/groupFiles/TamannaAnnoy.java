@@ -50,7 +50,6 @@ public class TamannaAnnoy implements Chatbot{
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
 			Main.print(chatbotAnnoyed[responseSelection]);
 		}
-		
 		else{
 				int responseSelection = (int)(Math.random()*chatbotQuestions.length);
 				Main.print(chatbotQuestions[responseSelection]);
