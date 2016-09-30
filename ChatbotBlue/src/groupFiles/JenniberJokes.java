@@ -1,5 +1,6 @@
 package groupFiles;
 
+
 public class JenniberJokes implements Chatbot{
 	private String jokeResponse;
 	private boolean inJokeMode;
