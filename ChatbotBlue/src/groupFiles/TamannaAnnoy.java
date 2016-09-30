@@ -2,7 +2,6 @@ package groupFiles;
 
 //Our chatbot will get increasingly "annoyed" if you ask the same question over and over
 
-
 //conversation begins, responseBefore saves users' response, then asks another question,
 //compares the responseBefore to the responseAfter
 //if the responseBefore == responseAfter, then it starts to count the responses
