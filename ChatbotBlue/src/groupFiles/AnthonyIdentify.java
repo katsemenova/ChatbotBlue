@@ -3,9 +3,9 @@ package groupFiles;
 public class AnthonyIdentify implements Chatbot{
 	
 	private boolean inLoop;
-	int topicSwitch = 0;
-	private String topic;
-	private String subject;
+	int topicSwitch = 0;//trigger for changeOfSubject
+	private String topic;//records sentence
+	private String subject;//records keyword
 	
 	private String[] changeOfSubject =
 		{"You've been talking a lot about" +
@@ -15,15 +15,14 @@ public class AnthonyIdentify implements Chatbot{
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
 						topic + "?"};
-	//possible for loop maybe?
+	
 	@Override
 	public void talk() {
-		inLoop = true;
-		while(inLoop){
-			Main.print("(Type 'quit' to go back.)");
+		inLoopA = true;
+		while(inLoopA){
+			Main.print("(Math.random()*changeOfSubject.length) + 1");
 			//static call on promptInput method from 
-			//Main class
-			topic = Main.promptInput(); 
+			//Main class 
 				Main.promptForever();
 			}
 
@@ -31,9 +30,13 @@ public class AnthonyIdentify implements Chatbot{
 
 	@Override
 	public boolean isTriggered(String userInput) {
-		if((int) topicSwitch >= 4){
-			System.out.println((Math.random()*changeOfSubject.length) + 1);
+			{
+			String topic = userinput;
+			String[] array2 = topic.split(" ");
 		}
-		return false;
+		return false;	
 	}
+	
+	public void Checking(String)
 }
+
