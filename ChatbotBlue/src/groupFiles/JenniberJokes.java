@@ -18,6 +18,8 @@ public class JenniberJokes implements Chatbot{
 	
 	public JenniberJokes(){
 		jokeCount = 0;
+		triggerNum = 0;
+		triggerString ="";
 	}
 	
 	public void talk(){
