@@ -2,12 +2,19 @@ package groupFiles;
 
 public class JenniberJokes implements Chatbot{
 	private String jokeResponse;
+	private String triggerString;
 	private boolean inJokeMode;
 	
 	private int jokeCount;
+	private int triggerNum;
 	
 	private String[] jokesQuestions = {"What do ghosts eat for supper?","How did the glamorous ghoul earn her living?","How did the ghost patch his sheet?"};
 	private String[] jokesAnswers = {"Spooketi","She was a cover ghoul.","With a pumpkin patch."};
+	private String[][] jokeTriggers = {
+			{"supper","dinner","meal","food"}, 
+			{"living","job","work"},
+			{"sheets","sheet","blanket","blankets"}
+		};
 	
 	public JenniberJokes(){
 		jokeCount = 0;
@@ -15,25 +22,28 @@ public class JenniberJokes implements Chatbot{
 	
 	public void talk(){
 		inJokeMode = true;
-		int responseSelection = (int)(Math.random()*jokesQuestions.length);
 		
 		while(inJokeMode){
 			jokeCount++;
-			printResponse(responseSelection); //helper method
+			printResponse(triggerNum); //helper method
 			jokeResponse = Main.promptInput();
 			//negate use !
-			if(!isTriggered(jokeResponse)){
-				inJokeMode = false;
-				Main.promptForever();
-			}
+//			if(!isTriggered(jokeResponse)){
+//				inJokeMode = false;
+//				Main.promptForever();
+//			}
 		}
 	}
 
 	
 	public boolean isTriggered(String userInput) {
-		for(int i=0; i<jokesAnswers.length; i++){
-			if(Main.findKeyword(userInput, jokesAnswers[i], 0)>=0){
-				return true;
+		for(int x=0; x<jokeTriggers.length; x++){
+			for(int y=0; y<jokeTriggers[x].length; y++){
+				if(Main.findKeyword(userInput, jokeTriggers[x][y], 0)>=0){
+					triggerNum = x;
+					triggerString = jokeTriggers[x][y];
+					return true;
+				}
 			}
 		}
 			
@@ -42,32 +52,19 @@ public class JenniberJokes implements Chatbot{
 	
 	//Decide how jokes will be triggered
 	
-	private void printResponse(int responseSelection) {
-		if(jokeCount>4){
-			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[responseSelection]);
-		}else if(jokeCount>0 && jokeCount<4){
-			Main.print("No. Guess Again. "+jokesQuestions[responseSelection]);
+	private void printResponse(int triggerNum) {
+		if(jokesAnswers[triggerNum].equals(jokeResponse)){
+			Main.print("That's right! The answer is: "+jokesAnswers[triggerNum]);
+			inJokeMode = false;
+		}
+		else if(jokeCount>4){
+			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[triggerNum]);
+			inJokeMode = false;
+		}else if(jokeCount>1 && jokeCount<=4){
+			Main.print("No. Guess Again. "+jokesQuestions[triggerNum]);
 		}else{
-			Main.print(jokesQuestions[responseSelection]);
+			Main.print("Speaking of "+triggerString+". "+jokesQuestions[triggerNum]);
 		}
 		
 	}
-	
-//	public class ArrayOfArraysDemo {
-//	  public static void main(String[] args) {
-//	    String[][] cartoons = {
-//	        { "Flintstones", "Fred", "Wilma", "Pebbles", "Dino" },
-//	        { "Rubbles", "Barney", "Betty", "Bam Bam" },
-//	        { "Jetsons", "George", "Jane", "Elroy", "Judy", "Rosie", "Astro" },
-//	        { "Scooby Doo Gang", "Scooby Doo", "Shaggy", "Velma", "Fred", "Daphne" } };
-//	
-//	    for (int i = 0; i < cartoons.length; i++) {
-//	      System.out.print(cartoons[i][0] + ": ");
-//	      for (int j = 1; j < cartoons[i].length; j++) {
-//	        System.out.print(cartoons[i][j] + " ");
-//	      }
-//	      System.out.println();
-//	    }
-//	  }
-//	}
 }
