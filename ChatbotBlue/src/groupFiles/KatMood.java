@@ -25,6 +25,7 @@ public class KatMood implements Chatbot{
 		happyLevel=0;
 		
 	}
+	//combine sadMood, happyMood, moodlevel above 0, get function
 	@Override
 	public void talk() {
 		complimentCntLoop=0;

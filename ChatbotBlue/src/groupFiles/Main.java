@@ -37,15 +37,16 @@ public class Main {
 			print("Do you want to hear some jokes?");
 			response = promptInput();
 			
-			if(response.equals("No")||tamanna.isTriggered(response)){
-				inMainLoop=false;
-				tamanna.talk();
-			}
+//			if(response.equals("No")||tamanna.isTriggered(response)){
+//				inMainLoop=false;
+//				tamanna.talk();
+//			}
 //			else if(anthony.isTriggered(response)){
 //				inMainLoop=false;
 //				anthony.talk();
 //			}
-			else if(response.equals("Yes")||jenniber.isTriggered(response)){
+//			else 
+			if(response.equals("Yes")||jenniber.isTriggered(response)){
 				inMainLoop=false;
 				jenniber.talk();
 			}
@@ -182,6 +183,7 @@ public class Main {
 
 			 printString +=currentCut+"\n";
 		 	}
-		 	System.out.print(printString);
+//		 System.out.println("                                                 Current Mood"+kat.getMood());	
+		 System.out.print(printString);
 	}
 }
