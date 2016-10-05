@@ -32,12 +32,13 @@ public class TamannaAnnoy implements Chatbot{
 		responseAfter = " ";
 		
 		while(inResponseLoop){
-			questionCount++;
+			
 			chatbotResponse(); 
 			questionResponse = Main.promptInput();
 			
 			//negate use
 			if(!isTriggered(questionResponse)){
+				questionCount++;
 				inResponseLoop = false;
 				//Main.promptForever();
 			}
