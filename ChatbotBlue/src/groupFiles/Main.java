@@ -28,7 +28,7 @@ public class Main {
 	public static void promptName(){
 		print("Enter your name");
 		user=input.nextLine();
-		print("Glad to meet you "+user+". For the rest of time I will call you " +user +". You may call me Computer. We will be friends.");
+		print("Glad to meet you "+user);
 	}
 
 	public static void promptForever() {
@@ -38,21 +38,22 @@ public class Main {
 			response = promptInput();
 			if(findKeyword(response, "good", 0)>=0)
 				print("That's wonderful. So glad that you feel good.");
-			else if(tamanna.isTriggered(response)){
-				inMainLoop=false;
-				tamanna.talk();
-			}else if(anthony.isTriggered(response)){
-				inMainLoop=false;
-				anthony.talk();
-			}else if(jenniber.isTriggered(response)){
-				inMainLoop=false;
-				jenniber.talk();
-			}
-			else if(kat.isTriggered(response)){
+//			else if(tamanna.isTriggered(response)){
+//				inMainLoop=false;
+//				tamanna.talk();
+//			}
+////			else if(anthony.isTriggered(response)){
+////				inMainLoop=false;
+////				anthony.talk();
+////			}
+//			else if(jenniber.isTriggered(response)){
+//				inMainLoop=false;
+//				jenniber.talk();
+//			}
+		else if(kat.isTriggered(response)){
 				inMainLoop=false;
 				kat.talk();
-			}
-			else 
+			}else 
 				print("I don't understand");
 		}
 	}
@@ -66,8 +67,7 @@ public class Main {
 		
 		//find first position of key word
 		int psn=searchString.indexOf(keyword);
-		System.out.println("keyword found at "+psn);
-		System.out.println("string is "+searchString);
+
 	  
 		//keep searching until keyword found
 		while (psn>=0){
@@ -82,7 +82,7 @@ public class Main {
 			if(psn+keyword.length()<searchString.length()){
 				after=searchString.substring(psn+keyword.length(),psn+keyword.length()+1);
 			}
-			if((before.compareTo("a")<0) && (after.compareTo("a")<0)&&noNegations(searchString,psn)){noNegations(searchString,psn);
+			if((before.compareTo("a")<0) && (after.compareTo("a")<0)&&noNegations(searchString,psn)){
 				return psn;
 			}
 			else
@@ -131,7 +131,6 @@ public class Main {
 		user= "";
 		
 		//initialize group chatbot
-		//school= new KatSchool();
 		
 		tamanna = new TamannaAnnoy();
 		jenniber = new JenniberJokes();
