@@ -32,13 +32,11 @@ public class TamannaAnnoy implements Chatbot{
 		responseAfter = " ";
 		
 		while(inResponseLoop){
-			
+			questionCount++;
 			chatbotResponse(); 
 			questionResponse = Main.promptInput();
 			
-			//negate use
 			if(!isTriggered(questionResponse)){
-				questionCount++;
 				inResponseLoop = false;
 				//Main.promptForever();
 			}
@@ -56,7 +54,6 @@ public class TamannaAnnoy implements Chatbot{
 				int responseSelection = (int)(Math.random()*chatbotQuestions.length);
 				Main.print(chatbotQuestions[responseSelection]);
 		}
-		
 	}
 	
 	public boolean isTriggered(String userInput) {
