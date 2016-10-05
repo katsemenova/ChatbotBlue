@@ -3,27 +3,26 @@ package groupFiles;
 public class AnthonyIdentify implements Chatbot{
 	
 	private boolean inLoop;
-	int topicSwitch = 0;//used to trigger the isTriggered function
-	private String sent;//records future sentences to be compared against key 
-	private String key;//records 1st sentence for future comparisons
-	private String subject;//recorded keyword
-	private int reminder = 0;//checks if it has been triggered
+	int topicTrigger = 0;//used to trigger the isTriggered function
+	private String[] checker;//records 1st sentence for future comparisons
+	private String keyword;//recorded keyword
+	private int triggerCount = 0;//checks if it has been triggered
 	
 	private String[] changeOfSubject =
 		{"You've been talking a lot about" +
-				topic + ". Why don't we change the subject?",
-				"I'm bored with "+ topic + 
+				keyword + ". Why don't we change the subject?",
+				"I'm bored with "+ keyword + 
 				". Can we please talk about something else?"+
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
-						topic + "?"};
-	
+						keyword + "?"};
+	//done
 	@Override
 	public void talk() {
 		inLoop = true;
 		while(inLoop){
-			Main.print("(Math.random()*changeOfSubject.length) + 1");
-			reminder = 0;
+			Main.print(changeOfSubject[(int) ((Math.random()*3) + 1)]);
+			triggerCount = 0;
 			//static call on promptInput method from 
 			//Main class 
 				Main.promptForever();
@@ -34,36 +33,36 @@ public class AnthonyIdentify implements Chatbot{
 	@Override
 	public boolean isTriggered(String userInput) {
 			{
-			String sent = userinput;
-			String[] sentence = sent.split(" ");//sentence is an array containing each wor of the user's sentence as their own item.
+
+			String sent = userInput;
+			String[] sentence = sent.split(" ");//sentence is an array containing each word of the user's sentence as their own item.
 			
-			if (reminder = 0)//reminder will be used to see if the keyword has been recorded or not,
-				String key = sentence;// and whether or not a sentence has been recorded or not to be used in comparisons 
-				reminder = 1;
+			if (triggerCount == 0)//reminder will be used to see if the keyword has been recorded or not,
+				checker = sentence;// and whether or not a sentence has been recorded or not to be used in comparisons 
+				triggerCount = 1;
 			
-			if (reminder = 1)
-				for (f = 0; f < sent.length; f++){
-					for(d = 0; d < key.length; d++){
-						if (key[d] = sentence[f])
-							subject = sentence[f];//when a match has been found, reminder wil be upped to 2 and simplify the process.
-							reminder = 2;
-							topicSwitch = 1;
+			if (triggerCount == 1)
+				for (int f = 0; f < sent.length(); f++){
+					for(int d = 0; d < checker.length; d++){
+						if (checker[d] == sentence[f])
+							keyword = sentence[f];//when a match has been found, the keyword is recorded to simplify the rest.
+							triggerCount += 1;
 					}	
 				}
-			if(remainder = 2)
-				for (f = 0; f < sent.length; f++){
-							subject = sentence[f];//when a match has been found, reminder wil be upped to 2 and simplify the process.
-							topicSwitch += 1;
+			if(triggerCount == 2)
+				for (int s = 0; s < sent.length(); s++){
+							keyword = sentence[s];//The keywor dis then used to simplify the function
+							triggerCount += 1;
 							
-			if (topicSwitch = 4)
-				talk();
+			if (triggerCount == 4)
+				return true;
 							
 			else
-				reminder = 0;//if nothing is found in the next sentence,
+				triggerCount = 0;//if nothing matches in the next sentence,
 							 //the function will reset.
+				}
+		return false;	
 			}
-		return true;	
-	}
-
+		}
 }
 
