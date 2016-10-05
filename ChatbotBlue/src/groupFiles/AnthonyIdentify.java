@@ -23,7 +23,7 @@ public class AnthonyIdentify implements Chatbot{
 		inLoop = true;
 		while(inLoop){
 			Main.print("(Math.random()*changeOfSubject.length) + 1");
-			reminder = false;
+			reminder = 0;
 			//static call on promptInput method from 
 			//Main class 
 				Main.promptForever();
@@ -35,13 +35,13 @@ public class AnthonyIdentify implements Chatbot{
 	public boolean isTriggered(String userInput) {
 			{
 			String sent = userinput;
-			String[] sentence = sent.split(" ");
+			String[] sentence = sent.split(" ");//sentence is an array containing each wor of the user's sentence as their own item.
 			
 			if (reminder = 0)//reminder will be used to see if the keyword has been recorded or not,
 				String key = sentence;// and whether or not a sentence has been recorded or not to be used in comparisons 
 				reminder = 1;
 			
-			if (remainder = 1)
+			if (reminder = 1)
 				for (f = 0; f < sent.length; f++){
 					for(d = 0; d < key.length; d++){
 						if (key[d] = sentence[f])
@@ -51,10 +51,16 @@ public class AnthonyIdentify implements Chatbot{
 					}	
 				}
 			if(remainder = 2)
-				for(d = 0; d < key.length; d++){
-					if (key[d] = sentence[f])
-						subject = sentence[f];
-						reminder = 2;
+				for (f = 0; f < sent.length; f++){
+							subject = sentence[f];//when a match has been found, reminder wil be upped to 2 and simplify the process.
+							topicSwitch += 1;
+							
+			if (topicSwitch = 4)
+				talk();
+							
+			else
+				reminder = 0;//if nothing is found in the next sentence,
+							 //the function will reset.
 			}
 		return true;	
 	}

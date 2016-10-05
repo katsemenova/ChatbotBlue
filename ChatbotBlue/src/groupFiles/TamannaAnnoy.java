@@ -25,26 +25,27 @@ public class TamannaAnnoy implements Chatbot{
 		questionCount = 0;
 	}
 	
-	public void talk() {
+	public void talk(){
 		
 		inResponseLoop = true;
 		responseBefore = " ";
 		responseAfter = " ";
 		
 		while(inResponseLoop){
-			questionCount++;
+			
 			chatbotResponse(); 
 			questionResponse = Main.promptInput();
 			
 			//negate use
 			if(!isTriggered(questionResponse)){
+				questionCount++;
 				inResponseLoop = false;
-				Main.promptForever();
+				//Main.promptForever();
 			}
 		}
 	}
 	
-	private void chatbotResponse() {
+	private void chatbotResponse(){
 		
 		if (questionCount >= 5){
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
