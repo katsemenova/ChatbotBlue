@@ -8,8 +8,13 @@ public class JenniberJokes implements Chatbot{
 	private int jokeCount;
 	private int triggerNum;
 	
-	private String[] jokesQuestions = {"What do ghosts eat for supper?","How did the glamorous ghoul earn her living?","How did the ghost patch his sheet?"};
-	private String[] jokesAnswers = {"Spooketi","She was a cover ghoul.","With a pumpkin patch."};
+	//private String[] jokesQuestions = {"What do ghosts eat for supper?","How did the glamorous ghoul earn her living?","How did the ghost patch his sheet?"};
+	//private String[] jokesAnswers = {"Spooketi","She was a cover ghoul","With a pumpkin patch"};
+	private String[][] jokes = {
+			{"What do ghosts eat for supper?","Spooketi"},
+			{"How did the glamorous ghoul earn her living?","She was a cover ghoul"},
+			{"How did the ghost patch his sheet?","With a pumpkin patch."}
+	};
 	private String[][] jokeTriggers = {
 			{"supper","dinner","meal","food"}, 
 			{"living","job","work"},
@@ -42,9 +47,9 @@ public class JenniberJokes implements Chatbot{
 
 		for(int x=0; x<jokeTriggers.length; x++){
 			for(int y=0; y<jokeTriggers[x].length; y++){
-				if(Main.findKeyword(userInput, jokeTriggers[x][y], 0)>=0){
+				triggerString = jokeTriggers[x][y];
+				if(Main.findKeyword(userInput, triggerString, 0)>=0){
 					triggerNum = x;
-					triggerString = jokeTriggers[x][y];
 					return true;
 				}
 
@@ -57,17 +62,20 @@ public class JenniberJokes implements Chatbot{
 	//Decide how jokes will be triggered
 	
 	private void printResponse(int triggerNum) {
-		if(jokesAnswers[triggerNum].equals(jokeResponse)){
-			Main.print("That's right! The answer is: "+jokesAnswers[triggerNum]);
+		//will exit while loop when user has guessed 3 times or answered the joke correctly
+		if(jokes[triggerNum][1].equals(jokeResponse)){
+			Main.print("That's right! The answer is: "+jokes[triggerNum][1]);
 			inJokeMode = false;
+			Main.promptForever();
 		}
 		else if(jokeCount>4){
-			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[triggerNum]);
+			Main.print("Since you do not seem to know the answer: The answer is "+jokes[triggerNum][1]);
 			inJokeMode = false;
+			Main.promptForever();
 		}else if(jokeCount>1 && jokeCount<=4){
-			Main.print("No. Guess Again. "+jokesQuestions[triggerNum]);
+			Main.print("No. Guess Again. "+jokes[triggerNum][0]);
 		}else{
-			Main.print("Speaking of "+triggerString+". "+jokesQuestions[triggerNum]);
+			Main.print("Speaking of "+triggerString+". "+jokes[triggerNum][0]);
 		}
 		
 	}

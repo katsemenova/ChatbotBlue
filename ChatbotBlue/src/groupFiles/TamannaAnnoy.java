@@ -16,7 +16,7 @@ public class TamannaAnnoy implements Chatbot{
 	private String responseBefore;
 	private String responseAfter;
 	
-	private String[] chatbotQuestions = {"Hi, what's your name?", "How are you doing today?", "Are you excited that Halloween is coming up?", "If you could choose a costume, what would you choose?"};
+	private String[] chatbotQuestions = {"Hi, what's your name?", "How are you doing on this fine day of Halloween?", "Are you excited that Halloween is coming up?", "If you could choose a costume, what would you choose?"};
 	private String[] chatbotAnnoyed = {"Didn't you just ask that question?", "Can't you think of anything new?", "Are you bad at making conversation?", "This is disappointing. Ask me something different."};
 	
 	private int questionCount;
@@ -32,13 +32,11 @@ public class TamannaAnnoy implements Chatbot{
 		responseAfter = " ";
 		
 		while(inResponseLoop){
-			
+			questionCount++;
 			chatbotResponse(); 
 			questionResponse = Main.promptInput();
 			
-			//negate use
 			if(!isTriggered(questionResponse)){
-				questionCount++;
 				inResponseLoop = false;
 				//Main.promptForever();
 			}
@@ -56,7 +54,6 @@ public class TamannaAnnoy implements Chatbot{
 				int responseSelection = (int)(Math.random()*chatbotQuestions.length);
 				Main.print(chatbotQuestions[responseSelection]);
 		}
-		
 	}
 	
 	public boolean isTriggered(String userInput) {

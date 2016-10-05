@@ -133,7 +133,7 @@ public class Main {
 		
 		tamanna = new TamannaAnnoy();
 		jenniber = new JenniberJokes();
-	//	anthony = new AnthonyIdentify();
+		//anthony = new AnthonyIdentify();
 		kat= new KatMood();
 	}
 	
