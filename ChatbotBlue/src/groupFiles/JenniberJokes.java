@@ -31,7 +31,7 @@ public class JenniberJokes implements Chatbot{
 
 	
 	public boolean isTriggered(String userInput) {
-		for(int i=0; i>jokesAnswers.length; i++){
+		for(int i=0; i<jokesAnswers.length; i++){
 			if(Main.findKeyword(userInput, jokesAnswers[i], 0)>=0){
 				return true;
 			}
