@@ -10,6 +10,8 @@ public class JenniberJokes implements Chatbot{
 	
 	//private String[] jokesQuestions = {"What do ghosts eat for supper?","How did the glamorous ghoul earn her living?","How did the ghost patch his sheet?"};
 	//private String[] jokesAnswers = {"Spooketi","She was a cover ghoul","With a pumpkin patch"};
+	
+	//Created 2D Arrays
 	private String[][] jokes = {
 			{"What do ghosts eat for supper?","Spooketi"},
 			{"How did the glamorous ghoul earn her living?","She was a cover ghoul"},
@@ -23,8 +25,6 @@ public class JenniberJokes implements Chatbot{
 	
 	public JenniberJokes(){
 		jokeCount = 0;
-		triggerNum = 0;
-		triggerString ="";
 	}
 	
 	public void talk(){
@@ -34,11 +34,6 @@ public class JenniberJokes implements Chatbot{
 			jokeCount++;
 			printResponse(triggerNum); //helper method
 			jokeResponse = Main.promptInput();
-			//negate use !
-//			if(!isTriggered(jokeResponse)){
-//				inJokeMode = false;
-//				Main.promptForever();
-//			}
 		}
 	}
 
@@ -59,10 +54,9 @@ public class JenniberJokes implements Chatbot{
 		return false;
 	}
 	
-	//Decide how jokes will be triggered
-	
 	private void printResponse(int triggerNum) {
 		//will exit while loop when user has guessed 3 times or answered the joke correctly
+		//else it will ask the joke
 		if(jokes[triggerNum][1].equals(jokeResponse)){
 			Main.print("That's right! The answer is: "+jokes[triggerNum][1]);
 			inJokeMode = false;
