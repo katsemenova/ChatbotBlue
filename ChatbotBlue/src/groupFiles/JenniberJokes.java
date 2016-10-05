@@ -7,10 +7,7 @@ public class JenniberJokes implements Chatbot{
 	
 	private int jokeCount;
 	private int triggerNum;
-	
-	//private String[] jokesQuestions = {"What do ghosts eat for supper?","How did the glamorous ghoul earn her living?","How did the ghost patch his sheet?"};
-	//private String[] jokesAnswers = {"Spooketi","She was a cover ghoul","With a pumpkin patch"};
-	
+
 	//Created 2D Arrays
 	private String[][] jokes = {
 			{"What do ghosts eat for supper?","Spooketi"},
@@ -37,7 +34,6 @@ public class JenniberJokes implements Chatbot{
 		}
 	}
 
-	
 	public boolean isTriggered(String userInput) {
 
 		for(int x=0; x<jokeTriggers.length; x++){
