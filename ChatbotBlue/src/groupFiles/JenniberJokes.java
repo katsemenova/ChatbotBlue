@@ -50,8 +50,6 @@ public class JenniberJokes implements Chatbot{
 		return false;
 	}
 	
-
-	
 	private void printResponse(int triggerNum) {
 		//will exit while loop when user has guessed 3 times or answered the joke correctly
 		//else it will ask the joke
