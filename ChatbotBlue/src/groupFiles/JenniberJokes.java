@@ -57,6 +57,7 @@ public class JenniberJokes implements Chatbot{
 	//Decide how jokes will be triggered
 	
 	private void printResponse(int triggerNum) {
+		//will exit while loop when user has guessed 3 times or answered the joke correctly
 		if(jokesAnswers[triggerNum].equals(jokeResponse)){
 			Main.print("That's right! The answer is: "+jokesAnswers[triggerNum]);
 			inJokeMode = false;
