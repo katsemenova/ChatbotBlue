@@ -42,9 +42,10 @@ public class JenniberJokes implements Chatbot{
 
 		for(int x=0; x<jokeTriggers.length; x++){
 			for(int y=0; y<jokeTriggers[x].length; y++){
-				if(Main.findKeyword(userInput, jokeTriggers[x][y], 0)>=0){
+				triggerString = jokeTriggers[x][y];
+				if(Main.findKeyword(userInput, triggerString, 0)>=0){
 					triggerNum = x;
-					triggerString = jokeTriggers[x][y];
+					
 					return true;
 				}
 
@@ -61,10 +62,12 @@ public class JenniberJokes implements Chatbot{
 		if(jokesAnswers[triggerNum].equals(jokeResponse)){
 			Main.print("That's right! The answer is: "+jokesAnswers[triggerNum]);
 			inJokeMode = false;
+			Main.promptForever();
 		}
 		else if(jokeCount>4){
 			Main.print("Since you do not seem to know the answer: The answer is "+jokesAnswers[triggerNum]);
 			inJokeMode = false;
+			Main.promptForever();
 		}else if(jokeCount>1 && jokeCount<=4){
 			Main.print("No. Guess Again. "+jokesQuestions[triggerNum]);
 		}else{
