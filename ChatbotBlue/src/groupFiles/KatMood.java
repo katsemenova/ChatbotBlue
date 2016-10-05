@@ -5,50 +5,94 @@ public class KatMood implements Chatbot{
 	private String[] happyWords={"smart", "genious","beautiful","cute","pretty","amazing","adorable","funny","lovely","cute"};
 	private String[] sadWords={"ugly","dumb","stupid","crazy","bad","disgusting","gross","annoying","evil", "worthless"};
 	private String[] youArray={"you","you're","you are","you are very","you are really"};
+	private String[] sadMoods={"upset","sad","unhappy","glum","miserable"};
+	private String[] happyMoods={"happy","joyous","flattered","delighted","extatic"};
+	private String[] responses={"Wow, you make me feel so ","How can you say that? I am ","Because you think that, I am ","I can't believe you think that, now I'm "};
+	
+	private String triggeredString;
+	private String userResponse;
+	private String moodWord;
+	private String lastInputedMood;
+	
 	private int sadLevel;
 	private int happyLevel;
-	private int complimentCount;
+	private int complimentCntLoop; //this is the count for the whole program run
+	
 	private boolean inMoodLoop;
-	private String userResponse;
 	
 	public void KatHello(){
 		sadLevel=0;
 		happyLevel=0;
-		complimentCount=0;
+		
 	}
+	@Override
 	public void talk() {
+		complimentCntLoop=0;
 		inMoodLoop=true;
+		moodWord=moodSet(triggeredString,0);
+		chatbotResponse();
 		while(inMoodLoop){
-			
+			complimentCntLoop++;
 			userResponse=Main.promptInput();
-			System.out.println(moodSet(userResponse,0));
+			moodWord=moodSet(userResponse,0);
+			chatbotResponse();
+			
+			if(!isTriggered(userResponse)){
+				inMoodLoop=false;
+				Main.promptForever();
+			}
 		}
 		
 	}
 	private String moodSet(String userResponse,int strtPos) {
 		for(int i=0; i<happyWords.length; i++){
+			
 			int happyWordPsn = Main.findKeyword(userResponse, happyWords[i], strtPos);
 			int sadWordPsn=Main.findKeyword(userResponse, sadWords[i], strtPos);
 			int addressingPsn = findAddressingPosition(userResponse,strtPos);
-			//fix whole thing abv because dealing with arrays
-			System.out.println(""+addressingPsn+"hap"+happyWordPsn+"sad"+sadWordPsn);
-			if(addressingPsn>=0&&happyWordPsn>=0&&addressingPsn>happyWordPsn){
-				sadLevel--;
+			
+			if(addressingPsn>=0 && happyWordPsn>=0 && addressingPsn<happyWordPsn){
 				happyLevel++;
-				chatbotResponse();
+				sadLevel--;
+				if(sadLevel<0)
+					sadLevel=0;
+				lastInputedMood="positive";
 				return happyWords[i];
-			}else if(addressingPsn>=0&&sadWordPsn>=0&&addressingPsn>sadWordPsn){
+				
+			}else if(addressingPsn>=0 && sadWordPsn>=0 && addressingPsn<sadWordPsn){
 				sadLevel++;
 				happyLevel--;
-				chatbotResponse();
+				if(happyLevel<0)
+					happyLevel=0;
+				lastInputedMood="negative";
 				return sadWords[i];
 			}
-			System.out.println("happyLevel:"+happyLevel+" sadLevel:"+sadLevel);
 		}
-		return "I'm okay";
+		return "null";
 	}
 	private void chatbotResponse() {
-		System.out.println("notbroken");
+		if(moodWord.equals("null"))
+		{
+			Main.print("I don't know how to feel about that");
+			
+		}else if(complimentCntLoop>3){
+			Main.print("Enough talking about what you think of me. Let's tell some Halloween Jokes");
+			inMoodLoop=false;
+			
+		}else if(lastInputedMood.equals("positive")){
+			int responseSelection=(int)(Math.random()*responses.length);
+			int moodNum=happyLevel;
+			if(happyLevel>happyMoods.length)
+				moodNum=5;
+			Main.print(responses[responseSelection]+happyMoods[moodNum]);
+			
+		}else if(lastInputedMood.equals("negative")){
+			int responseSelection=(int)(Math.random()*responses.length);
+			int moodNum=sadLevel;
+			if(happyLevel>sadMoods.length)
+				moodNum=5;
+			Main.print(responses[responseSelection]+sadMoods[moodNum]);
+		}
 		
 	}
 	private int findAddressingPosition(String userResponse, int strtPos){
@@ -59,22 +103,14 @@ public class KatMood implements Chatbot{
 		}
 		return -1;
 	}
-//	private static boolean addressingChatbot(String searchString, int psn) {
-//		String[] youArray={"you ","you're ","you are ","you are very ","you are really "};
-//		for(int i=0;i<youArray.length;i++){
-//			String testWord=youArray[i];
-//			if(psn-testWord.length()>=0&&searchString.substring(psn-testWord.length(),psn).equals(testWord)){
-//				return true;
-//			}
-//		}
-//		return false;	
-//	}
 	
-
+	@Override
 	public boolean isTriggered(String userInput) {
 		for(int i=0;i<youArray.length;i++){
-			if(Main.findKeyword(userInput,youArray[i],0)>=0)
+			if(Main.findKeyword(userInput,youArray[i],0)>=0){
+				triggeredString=userInput;
 				return true;
+			}
 		}
 		return false;
 	}

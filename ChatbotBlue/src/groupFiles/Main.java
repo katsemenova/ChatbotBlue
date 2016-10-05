@@ -28,29 +28,28 @@ public class Main {
 	public static void promptName(){
 		print("Enter your name");
 		user=input.nextLine();
-		print("Glad to meet you "+user);
+		print("Glad to meet you "+user+". I am Boo the Halloween Ghost. I love halloween jokes soooo much.");
 	}
 
 	public static void promptForever() {
 		inMainLoop =true;
 		while(inMainLoop){
-			print("Hi, "+ user + ". How are you?");
+			print("Do you want to hear some jokes?");
 			response = promptInput();
-			if(findKeyword(response, "good", 0)>=0)
-				print("That's wonderful. So glad that you feel good.");
-//			else if(tamanna.isTriggered(response)){
+			
+			if(response.equals("No")||tamanna.isTriggered(response)){
+				inMainLoop=false;
+				tamanna.talk();
+			}
+//			else if(anthony.isTriggered(response)){
 //				inMainLoop=false;
-//				tamanna.talk();
+//				anthony.talk();
 //			}
-////			else if(anthony.isTriggered(response)){
-////				inMainLoop=false;
-////				anthony.talk();
-////			}
-//			else if(jenniber.isTriggered(response)){
-//				inMainLoop=false;
-//				jenniber.talk();
-//			}
-		else if(kat.isTriggered(response)){
+			else if(response.equals("Yes")||jenniber.isTriggered(response)){
+				inMainLoop=false;
+				jenniber.talk();
+			}
+			else if(kat.isTriggered(response)){
 				inMainLoop=false;
 				kat.talk();
 			}else 
@@ -134,7 +133,7 @@ public class Main {
 		
 		tamanna = new TamannaAnnoy();
 		jenniber = new JenniberJokes();
-		anthony = new AnthonyIdentify();
+	//	anthony = new AnthonyIdentify();
 		kat= new KatMood();
 	}
 	
@@ -157,7 +156,7 @@ public class Main {
 	
 	public static void print(String s){
 		 String printString = "";
-		 int cutoff = 25;
+		 int cutoff = 50;
 		 //this while loop last as long as there are words left in the original String
 		 while(s.length() > 0){
 
