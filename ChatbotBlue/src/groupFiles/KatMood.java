@@ -5,7 +5,7 @@ public class KatMood implements Chatbot{
 	private String[] happyWords={"smart", "genious","beautiful","cute","pretty","amazing","adorable","funny","lovely","cute"};
 	private String[] sadWords={"ugly","dumb","stupid","crazy","bad","disgusting","gross","annoying","evil", "worthless"};
 	private String[] youArray={"you","you're","you are","you are very","you are really"};
-	private String[] moods={"upset","unhappy","sad","glum","miserable","happy","joyous","flattered","delighted","extatic"};
+	public String[] moods={"upset","unhappy","sad","glum","miserable","happy","joyous","flattered","delighted","extatic"};
 	private String[] responses={"Wow, you make me feel so ","How can you say that? I am ","Because you think that, I am ","I can't believe you think that, now I'm "};
 	
 	private String triggeredString;
