@@ -101,6 +101,15 @@ public class KatMood implements Chatbot{
 		String[] array ={currentMood,moodLvl};
 		return array;
 	}
+	
+	/**
+	 * increases/decreases mood
+	 * @param i can be positive or negative
+	 */
+	public void improveMood(int i){
+		moodLevel+=i;
+	}
+	
 	private int findAddressingPosition(String userResponse, int strtPos){
 		for(int i=0;i<youArray.length;i++){
 			int youPosition=Main.findKeyword(userResponse, youArray[i], strtPos);
