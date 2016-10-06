@@ -74,6 +74,7 @@ public class KatMood implements Chatbot{
 		if(moodWord.equals("null"))
 		{
 			Main.print("I don't know how to feel about that");
+			inMoodLoop=false;
 			
 		}else if(complimentCntLoop>3){
 			Main.print("Enough talking about what you think of me. Let's tell some Halloween Jokes");

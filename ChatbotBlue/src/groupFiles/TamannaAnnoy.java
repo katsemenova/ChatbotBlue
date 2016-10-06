@@ -47,7 +47,7 @@ public class TamannaAnnoy implements Chatbot{
 	
 	private void chatbotResponse(){
 		
-		if (questionCount >= 5){
+		if (questionCount >= 3){
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
 			Main.print(chatbotAnnoyed[responseSelection] + "'" + responseBefore	+ "'");
 		}else{
@@ -58,12 +58,14 @@ public class TamannaAnnoy implements Chatbot{
 	
 	public boolean isTriggered(String userInput) {
 		
-		last = responseBefore.charAt(responseBefore.length() - 1);
-		String comparable = ""+last;
-		if(comparable.compareTo("?") == 63){
-			if(responseBefore.equals(responseAfter)){
+//		last = responseBefore.charAt(responseBefore.length() - 1);
+//		String comparable = ""+last;
+		System.out.println("it worked");
+		String lastChar=""+ userInput.charAt(userInput.length()-1);
+		if(lastChar.compareTo("?") == 63 && Main.prevResponse.equals(responseAfter)){
+			
 				return true;
-			}	
+				
 		}
 		return false;
 	}
