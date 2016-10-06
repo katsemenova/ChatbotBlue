@@ -44,11 +44,11 @@ public class AnthonyIdentify implements Chatbot{
 				return false;
 			}
 			//wooooork
-			if (triggerCount == 1)
-			{Main.print("stage 2");
+			if (triggerCount == 1){
+				Main.print("stage 2");
 			System.out.println(triggerCount);
 			System.out.println(keyword);
-				for (int f = 0; f < sentence.length; f++)
+			for (int f = 0; f < sentence.length; f++)
 				{
 					for(int d = 0; d < checker.length;d++)
 					{
@@ -61,6 +61,7 @@ public class AnthonyIdentify implements Chatbot{
 				}
 			return false;
 			}
+			
 			if(triggerCount == 2)
 			{Main.print("stage 3");
 				for (int s = 0; s < sent.length(); s++)
