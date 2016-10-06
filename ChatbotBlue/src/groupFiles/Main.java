@@ -185,6 +185,7 @@ public class Main {
 
 			 printString +=currentCut+"\n";
 		 	}
+		 	System.out.println("                                                 Current Mood: "+kat.getMood()[0]+" MoodLevel: "+kat.getMood()[1]);	
 		 	System.out.print(printString);
 	}
 }
