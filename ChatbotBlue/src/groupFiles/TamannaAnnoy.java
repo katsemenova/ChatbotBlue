@@ -62,7 +62,7 @@ public class TamannaAnnoy implements Chatbot{
 		userResponse = userInput;
 		System.out.println("it worked");
 		String lastChar = ""+ userInput.charAt(userInput.length()-1);
-		
+		//new
 		if(lastChar.compareTo("?") == 63 && Main.prevResponse.equals(responseAfter)){
 			return true;
 		}
