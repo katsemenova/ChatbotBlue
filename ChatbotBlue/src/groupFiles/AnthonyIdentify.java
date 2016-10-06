@@ -39,7 +39,7 @@ public class AnthonyIdentify implements Chatbot{
 				triggerCount = 1;
 				return false;
 				}
-			//
+			//wooooork
 			if (triggerCount == 1){
 				for (int f = 0; f < sent.length(); f++){
 					for(int d = 0; d < checker.length;d++){
