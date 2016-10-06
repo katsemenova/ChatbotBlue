@@ -3,7 +3,6 @@ package groupFiles;
 public class AnthonyIdentify implements Chatbot{
 	
 	private boolean inLoop;
-	int topicTrigger = 0;//used to trigger the isTriggered function
 	private String[] checker;//records 1st sentence for future comparisons
 	private String keyword;//recorded keyword
 	private int triggerCount = 0;//checks if it has been triggered
@@ -27,42 +26,45 @@ public class AnthonyIdentify implements Chatbot{
 			//Main class 
 				Main.promptForever();
 			}
-
 		}	
 
 	@Override
 	public boolean isTriggered(String userInput) {
-			{
+			
 
 			String sent = userInput;
 			String[] sentence = sent.split(" ");//sentence is an array containing each word of the user's sentence as their own item.
 			
-			if (triggerCount == 0)//reminder will be used to see if the keyword has been recorded or not,
+			if (triggerCount == 0){//reminder will be used to see if the keyword has been recorded or not,
 				checker = sentence;// and whether or not a sentence has been recorded or not to be used in comparisons 
-				triggerCount = 1;
+				triggerCount = 1;}
 			
-			if (triggerCount == 1)
+			if (triggerCount == 1){
 				for (int f = 0; f < sent.length(); f++){
 					for(int d = 0; d < checker.length; d++){
 						if (checker[d] == sentence[f])
 							keyword = sentence[f];//when a match has been found, the keyword is recorded to simplify the rest.
 							triggerCount += 1;
-					}	
+						}	
+					}
 				}
-			if(triggerCount == 2)
+			if(triggerCount == 2){
 				for (int s = 0; s < sent.length(); s++){
-							keyword = sentence[s];//The keywor dis then used to simplify the function
+							keyword = sentence[s];//The keyword is then used to simplify the function
 							triggerCount += 1;
+						}
+					}
 							
-			if (triggerCount == 4)
+			if (triggerCount == 4){
 				return true;
-							
-			else
-				triggerCount = 0;//if nothing matches in the next sentence,
-							 //the function will reset.
 				}
-		return false;	
-			}
+							
+			else{
+				triggerCount = 0;//if nothing matches in the next sentence,the function will reset.
+				}
+			
+				return false;	
 		}
 }
+
 
