@@ -108,6 +108,20 @@ public class KatMood implements Chatbot{
 	 */
 	public void improveMood(int i){
 		moodLevel+=i;
+		if(i<0){
+			currentMood = moods[i];
+				if(moodLevel<0)
+					currentMood = moods[0];
+				if(moodLevel>4)
+					currentMood = moods[i-5];
+		}else if(i>0){
+			currentMood = moods[i];
+			if(moodLevel>moods.length)
+				currentMood = moods[moods.length];
+			if(moodLevel<5)
+				currentMood = moods[moodLevel+5];
+			
+		}
 	}
 	
 	private int findAddressingPosition(String userResponse, int strtPos){
