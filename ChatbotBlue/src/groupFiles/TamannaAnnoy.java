@@ -34,12 +34,12 @@ public class TamannaAnnoy implements Chatbot{
 		while(inResponseLoop){
 			questionCount++;
 			chatbotResponse(); 
-			responseBefore=userResponse;
+			responseBefore = userResponse;
 			userResponse = Main.promptInput();
-			responseAfter=userResponse;
+			responseAfter = userResponse;
+			
 			if(!isTriggered(userResponse)){
 				inResponseLoop = false;
-				//Main.promptForever();
 			}
 		}
 	}
@@ -57,17 +57,9 @@ public class TamannaAnnoy implements Chatbot{
 	
 	public boolean isTriggered(String userInput) {
 		
-		//last = responseBefore.charAt(responseBefore.length() - 1);
-		//String comparable = ""+last;
 		userResponse = userInput;
-		String pr=Main.prevResponse;
-		
-		//System.out.print("equal?"+pr.equals(userResponse));
-		
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
-		
-		
-		if((lastChar.compareTo("?") == 0) && userResponse.equals(pr)){
+		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
 			return true;
 		}
 		return false;
