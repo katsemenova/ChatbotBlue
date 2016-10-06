@@ -60,17 +60,17 @@ public class TamannaAnnoy implements Chatbot{
 		//last = responseBefore.charAt(responseBefore.length() - 1);
 		//String comparable = ""+last;
 		userResponse = userInput;
-		System.out.println("it worked");
-		String lastChar = ""+ userInput.charAt(userInput.length()-1);
+		String pr=Main.prevResponse;
+		
+		//System.out.print("equal?"+pr.equals(userResponse));
+		
+		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
 		//new
-		if(lastChar.compareTo("?") == 63 && Main.prevResponse.equals(responseAfter)){
+		
+		if((lastChar.compareTo("?") == 0) && userResponse.equals(pr)){
 			return true;
 		}
 		return false;
 	}
 
-	public String[] getMood() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
