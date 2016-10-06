@@ -17,7 +17,7 @@ public class Main {
 	static Chatbot anthony;
 	static Chatbot tamanna;
 	static Chatbot jenniber;
-	static Chatbot kat;
+	static KatMood kat;
 
 	public static void main(String[] args) {
     //demonstrateStringMethods();
