@@ -21,7 +21,6 @@ public class AnthonyIdentify implements Chatbot{
 		inLoop = true;
 		while(inLoop){
 			Main.print(changeOfSubject[(int) ((Math.random()*3) + 1)]);
-			triggerCount = 0;
 			//static call on promptInput method from 
 			//Main class 
 				Main.promptForever();
@@ -37,34 +36,44 @@ public class AnthonyIdentify implements Chatbot{
 			
 			if (triggerCount == 0){//reminder will be used to see if the keyword has been recorded or not,
 				checker = sentence;// and whether or not a sentence has been recorded or not to be used in comparisons 
-				triggerCount = 1;}
+				triggerCount = 1;
+				return false;
+				}
 			
 			if (triggerCount == 1){
 				for (int f = 0; f < sent.length(); f++){
-					for(int d = 0; d < checker.length; d++){
+					for(int d = 0; d < checker.length;d++){
 						if (checker[d] == sentence[f])
 							keyword = sentence[f];//when a match has been found, the keyword is recorded to simplify the rest.
 							triggerCount += 1;
 						}	
 					}
+				return false;
 				}
 			if(triggerCount == 2){
 				for (int s = 0; s < sent.length(); s++){
 							keyword = sentence[s];//The keyword is then used to simplify the function
 							triggerCount += 1;
 						}
+					return false;
 					}
 							
 			if (triggerCount == 4){
+				triggerCount = 0;
 				return true;
 				}
 							
 			else{
 				triggerCount = 0;//if nothing matches in the next sentence,the function will reset.
-				}
-			
-				return false;	
+				return false;
+				}	
 		}
+
+	@Override
+	public String[] getMood() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 
