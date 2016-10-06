@@ -18,6 +18,7 @@ public class TamannaAnnoy implements Chatbot{
 	
 	private char last;
 	
+	private String[] chatbotQuestions = {"Are you afraid of ghosts?", "What's your favorite thing about Halloween?", "Do you know what your costume for Halloween is going to be?", "Are you going to go trick or treating?"};
 	private String[] chatbotAnnoyed = {"Didn't you just ask ", "Can't you think of anything new? You just said ", "Are you bad at making conversation? You should think of something new. You already asked ", "This is disappointing. Ask me something different. You already asked "};
 	
 	private int questionCount;
@@ -49,6 +50,9 @@ public class TamannaAnnoy implements Chatbot{
 		if (questionCount >= 5){
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
 			Main.print(chatbotAnnoyed[responseSelection] + "'" + responseBefore	+ "'");
+		}else{
+			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
+			Main.print(chatbotQuestions[responseSelection]);
 		}
 	}
 	
@@ -62,6 +66,10 @@ public class TamannaAnnoy implements Chatbot{
 			}	
 		}
 		return false;
-		//should work
+	}
+
+	public String[] getMood() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
