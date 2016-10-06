@@ -7,7 +7,8 @@ public class Main {
 	static Scanner input;
 	static String user;
 	static String response; 
-	static boolean inMainLoop; 
+	static boolean inMainLoop;
+	static String prevResponse;
 	
 	//list all the chatbots available under this class
 	//add group chatbots below see example
@@ -16,7 +17,7 @@ public class Main {
 	static Chatbot anthony;
 	static Chatbot tamanna;
 	static Chatbot jenniber;
-	static Chatbot kat;
+	static KatMood kat;
 
 	public static void main(String[] args) {
     //demonstrateStringMethods();
@@ -35,7 +36,9 @@ public class Main {
 		inMainLoop =true;
 		while(inMainLoop){
 			print("Do you want to hear some jokes?");
+			prevResponse = response;
 			response = promptInput();
+
 			
 			if(response.equals("No")||tamanna.isTriggered(response)){
 				inMainLoop=false;

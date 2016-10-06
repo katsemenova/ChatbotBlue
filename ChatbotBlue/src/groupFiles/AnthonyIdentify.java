@@ -4,7 +4,7 @@ public class AnthonyIdentify implements Chatbot{
 	
 	private boolean inLoop;
 	private String[] checker;//records 1st sentence for future comparisons
-	private String keyword;//recorded keyword
+	private String keyword = "test";//recorded keyword
 	private int triggerCount = 0;//checks if it has been triggered
 	
 	private String[] changeOfSubject =
@@ -47,6 +47,7 @@ public class AnthonyIdentify implements Chatbot{
 			if (triggerCount == 1)
 			{Main.print("stage 2");
 			System.out.println(triggerCount);
+			System.out.println(keyword);
 				for (int f = 0; f < sentence.length; f++)
 				{
 					for(int d = 0; d < checker.length;d++)
@@ -84,12 +85,6 @@ public class AnthonyIdentify implements Chatbot{
 			}	
 	}
 
-		@Override
-		public String[] getMood()
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
 }
 
 

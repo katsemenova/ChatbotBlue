@@ -5,7 +5,7 @@ public class KatMood implements Chatbot{
 	private String[] happyWords={"smart", "genious","beautiful","cute","pretty","amazing","adorable","funny","lovely","cute"};
 	private String[] sadWords={"ugly","dumb","stupid","crazy","bad","disgusting","gross","annoying","evil", "worthless"};
 	private String[] youArray={"you","you're","you are","you are very","you are really"};
-	private String[] moods={"upset","unhappy","sad","glum","miserable","happy","joyous","flattered","delighted","extatic"};
+	public String[] moods={"upset","unhappy","sad","glum","miserable","happy","joyous","flattered","delighted","extatic"};
 	private String[] responses={"Wow, you make me feel so ","How can you say that? I am ","Because you think that, I am ","I can't believe you think that, now I'm "};
 	
 	private String triggeredString;
@@ -74,6 +74,7 @@ public class KatMood implements Chatbot{
 		if(moodWord.equals("null"))
 		{
 			Main.print("I don't know how to feel about that");
+			inMoodLoop=false;
 			
 		}else if(complimentCntLoop>3){
 			Main.print("Enough talking about what you think of me. Let's tell some Halloween Jokes");
@@ -101,6 +102,29 @@ public class KatMood implements Chatbot{
 		String[] array ={currentMood,moodLvl};
 		return array;
 	}
+	
+	/**
+	 * increases/decreases mood
+	 * @param i can be positive or negative
+	 */
+	public void improveMood(int i){
+		moodLevel+=i;
+		if(i<0){
+			currentMood = moods[i];
+				if(moodLevel<0)
+					currentMood = moods[0];
+				if(moodLevel>4)
+					currentMood = moods[i-5];
+		}else if(i>0){
+			currentMood = moods[i];
+			if(moodLevel>moods.length)
+				currentMood = moods[moods.length];
+			if(moodLevel<5)
+				currentMood = moods[moodLevel+5];
+			
+		}
+	}
+	
 	private int findAddressingPosition(String userResponse, int strtPos){
 		for(int i=0;i<youArray.length;i++){
 			int youPosition=Main.findKeyword(userResponse, youArray[i], strtPos);
