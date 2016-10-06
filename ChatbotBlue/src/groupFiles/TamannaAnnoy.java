@@ -16,8 +16,6 @@ public class TamannaAnnoy implements Chatbot{
 	private String responseBefore;
 	private String responseAfter;
 	
-	private char last;
-	
 	private String[] chatbotQuestions = {"Are you afraid of ghosts?", "What's your favorite thing about Halloween?", "Do you know what your costume for Halloween is going to be?", "Are you going to go trick or treating?"};
 	private String[] chatbotAnnoyed = {"Didn't you just ask ", "Can't you think of anything new? You just said ", "Are you bad at making conversation? You should think of something new. You already asked ", "This is disappointing. Ask me something different. You already asked "};
 	
@@ -30,15 +28,16 @@ public class TamannaAnnoy implements Chatbot{
 	public void talk(){
 		
 		inResponseLoop = true;
-		responseBefore = " ";
-		responseAfter = " ";
+		responseBefore = Main.prevResponse;
+		responseAfter = userResponse;
 		
 		while(inResponseLoop){
 			questionCount++;
 			chatbotResponse(); 
+			responseBefore=userResponse;
 			userResponse = Main.promptInput();
-			
-			if(!isTriggered(questionResponse)){
+			responseAfter=userResponse;
+			if(!isTriggered(userResponse)){
 				inResponseLoop = false;
 				//Main.promptForever();
 			}
@@ -58,14 +57,14 @@ public class TamannaAnnoy implements Chatbot{
 	
 	public boolean isTriggered(String userInput) {
 		
-//		last = responseBefore.charAt(responseBefore.length() - 1);
-//		String comparable = ""+last;
+		//last = responseBefore.charAt(responseBefore.length() - 1);
+		//String comparable = ""+last;
+		userResponse = userInput;
 		System.out.println("it worked");
-		String lastChar=""+ userInput.charAt(userInput.length()-1);
+		String lastChar = ""+ userInput.charAt(userInput.length()-1);
+		//new
 		if(lastChar.compareTo("?") == 63 && Main.prevResponse.equals(responseAfter)){
-			
-				return true;
-				
+			return true;
 		}
 		return false;
 	}
