@@ -46,7 +46,8 @@ public class JenniberJokes implements Chatbot{
 				else{
 					for(int z=0; z<userResponse.length; z++){
 						if(Main.findKeyword(userInput, userResponse[z], 0)>=0){
-							getTriggerNum();
+							triggerNum = getTriggerNum();
+							triggerString = " ";
 							return true;
 						}
 					}
@@ -60,7 +61,7 @@ public class JenniberJokes implements Chatbot{
 	
 	private int getTriggerNum(){	
 		double rand = Math.random();
-		int trig = (int) (jokes.length *rand);
+		int trig = (int) (jokes.length*rand);
 		return trig;
 	}
 	
@@ -81,7 +82,10 @@ public class JenniberJokes implements Chatbot{
 		}else if(jokeCount>1 && jokeCount<=4){
 			Main.kat.improveMood(-1);
 			Main.print("No. Guess Again. "+jokes[triggerNum][0]);
-		}else{
+		}else if(triggerString.equals(" ")){
+			Main.print(jokes[triggerNum][0]);
+		}
+		else{
 			Main.print("Speaking of "+triggerString+". "+jokes[triggerNum][0]);
 		}
 		
