@@ -65,7 +65,7 @@ public class TamannaAnnoy implements Chatbot{
 		//System.out.print("equal?"+pr.equals(userResponse));
 		
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
-		//new
+		
 		
 		if((lastChar.compareTo("?") == 0) && userResponse.equals(pr)){
 			return true;
