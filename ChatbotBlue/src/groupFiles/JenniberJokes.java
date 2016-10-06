@@ -69,4 +69,10 @@ public class JenniberJokes implements Chatbot{
 		}
 		
 	}
+
+	@Override
+	public String[] getMood() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
