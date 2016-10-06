@@ -9,30 +9,34 @@ public class AnthonyIdentify implements Chatbot{
 	private int triggerCount = 0;//checks if it has been triggered
 	
 	private String[] changeOfSubject =
-		{"You've been talking a lot about" +
-				keyword + ". Why don't we change the subject?",
-				"I'm bored with "+ keyword + 
-				". Can we please talk about something else?"+
-				" Turtles perhaps?",
-				"Could we get off of the topic of "+
-						keyword + "?"};
+		{
+			"You've been talking a lot about" 
+			+keyword + ". Why don't we change the subject?",
+			"I'm bored with "+ keyword 
+			+ ". Can we please talk about something else?"
+			+" Turtles perhaps?",
+			"Could we get off of the topic of "
+			+ keyword + "?"};
 	//done
 	@Override
-	public void talk() {
+	public void talk() 
+		{
 		inLoop = true;
-		while(inLoop){
+		while(inLoop)
+			{
 			Main.print(changeOfSubject[(int) ((Math.random()*3) + 1)]);
 			triggerCount = 0;
 			//static call on promptInput method from 
 			//Main class 
-				Main.promptForever();
+			Main.promptForever();
 			}
 
 		}	
-
+//
 	@Override
-	public boolean isTriggered(String userInput) {
-			{
+	public boolean isTriggered(String userInput) 
+	{
+		{//
 
 			String sent = userInput;
 			String[] sentence = sent.split(" ");//sentence is an array containing each word of the user's sentence as their own item.
@@ -42,27 +46,30 @@ public class AnthonyIdentify implements Chatbot{
 				triggerCount = 1;
 			
 			if (triggerCount == 1)
-				for (int f = 0; f < sent.length(); f++){
-					for(int d = 0; d < checker.length; d++){
+				for (int f = 0; f < sent.length(); f++)
+				{	
+					for(int d = 0; d < checker.length; d++)
+					{
 						if (checker[d] == sentence[f])
 							keyword = sentence[f];//when a match has been found, the keyword is recorded to simplify the rest.
 							triggerCount += 1;
 					}	
 				}
+			
 			if(triggerCount == 2)
 				for (int s = 0; s < sent.length(); s++){
 							keyword = sentence[s];//The keywor dis then used to simplify the function
 							triggerCount += 1;
-							
+				}
+			
 			if (triggerCount == 4)
 				return true;
 							
 			else
 				triggerCount = 0;//if nothing matches in the next sentence,
 							 //the function will reset.
-				}
+				
 		return false;	
-			}
 		}
-}
-
+	}
+}	
