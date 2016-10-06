@@ -10,9 +10,9 @@ package groupFiles;
 
 public class TamannaAnnoy implements Chatbot{
 
-	private String questionResponse;
 	private boolean inResponseLoop;
 	
+	private String userResponse;	
 	private String responseBefore;
 	private String responseAfter;
 	
@@ -36,7 +36,7 @@ public class TamannaAnnoy implements Chatbot{
 		while(inResponseLoop){
 			questionCount++;
 			chatbotResponse(); 
-			questionResponse = Main.promptInput();
+			userResponse = Main.promptInput();
 			
 			if(!isTriggered(questionResponse)){
 				inResponseLoop = false;
