@@ -52,7 +52,7 @@ public class AnthonyIdentify implements Chatbot{
 			{
 				for(int d = 0; d < checker.length;d++)
 				{
-					if (checker[d] == sentence[f])
+					if (checker[d].equals(sentence[f]))
 					{
 						keyword = sentence[f];//when a match has been found, the keyword is recorded to simplify the rest.
 						triggerCount += 1;
