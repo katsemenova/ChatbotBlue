@@ -45,6 +45,7 @@ public class TamannaAnnoy implements Chatbot{
 			responseAfter = userResponse;
 			
 			if(!isTriggered(userResponse)){
+				Main.print("Cool.");
 				inResponseLoop = false;
 				Main.promptForever();
 			}
