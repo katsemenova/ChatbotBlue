@@ -50,15 +50,15 @@ public class TamannaAnnoy implements Chatbot{
 		}
 	}
 	
-	private boolean containsNo(String input){
+	private static boolean containsNo(String input){
 		
 		String[] noResponses = {"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
 		for (int i=0; i < noResponses.length; i++){
 			if(input.equals(noResponses[i])){
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	private void chatbotResponse(){
