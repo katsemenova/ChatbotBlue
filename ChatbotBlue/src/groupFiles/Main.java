@@ -34,25 +34,30 @@ public class Main {
 
 	public static void promptForever() {
 		inMainLoop =true;
+		String[] yesResponses={"Yes","yes","yea","Yea","Sure","sure","Ok", "ok","Alright","alright","yep","Yep","Why not","why not"};
+		String[] noResponses={"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
 		while(inMainLoop){
 			print("Do you want to hear some jokes?");
 			prevResponse = response;
 			response = promptInput();
 
-			
-			if(response.equals("No")||tamanna.isTriggered(response)){
-				inMainLoop=false;
-				tamanna.talk();
+			for (int i=0;i<yesResponses.length;i++){
+				if(response.equals(noResponses[i])||tamanna.isTriggered(response)){
+					inMainLoop=false;
+					tamanna.talk();
+				}
+				else if(response.equals(yesResponses[i])||jenniber.isTriggered(response)){
+					inMainLoop=false;
+					jenniber.talk();
+				}
 			}
 //			else if(anthony.isTriggered(response)){
 //				inMainLoop=false;
 //				anthony.talk();
 //			}
-			else if(response.equals("Yes")||jenniber.isTriggered(response)){
-				inMainLoop=false;
-				jenniber.talk();
-			}
-			else if(kat.isTriggered(response)){
+			
+			//else 
+			if(kat.isTriggered(response)){
 				inMainLoop=false;
 				kat.talk();
 			}else 

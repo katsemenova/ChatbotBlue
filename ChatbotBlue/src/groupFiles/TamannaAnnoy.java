@@ -48,7 +48,7 @@ public class TamannaAnnoy implements Chatbot{
 	private void chatbotResponse(){
 		if(questionCount==1){
 			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
-			Main.print("I don't want to answer that. "+chatbotQuestions[responseSelection]);
+			Main.print("I don't want to talk about that. "+chatbotQuestions[responseSelection]);
 		}else if (questionCount >= 3){
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
 			Main.kat.improveMood(-1);
