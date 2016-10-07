@@ -44,6 +44,7 @@ public class TamannaAnnoy implements Chatbot{
 			responseAfter = userResponse;
 			
 			if(!isTriggered(userResponse)){
+				Main.print("Cool.");
 				inResponseLoop = false;
 				Main.promptForever();
 			}
@@ -51,9 +52,11 @@ public class TamannaAnnoy implements Chatbot{
 	}
 	
 	private boolean containsNo(String input){
-		
+//		System.out.println("o");
 		String[] noResponses = {"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
 		for (int i=0; i < noResponses.length; i++){
+			String item=noResponses[i];
+			System.out.println(input.equals(item));
 			if(input.equals(noResponses[i])){
 				return true;
 			}
@@ -86,10 +89,10 @@ public class TamannaAnnoy implements Chatbot{
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
 		/*if the user asks a question and the previous response is the same as 
 		the userResponse than it returns true and goes into the talk method*/
-		if(containsNo(userResponse) && containsNo(responseBefore) && questionCount >= 1){
+		
+		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
 			return true;
-		}
-		else if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
+		}else if((questionCount >= 1 && containsNo(userResponse) || containsNo(Main.prevResponse)) ){
 			return true;
 		}
 		return false;
