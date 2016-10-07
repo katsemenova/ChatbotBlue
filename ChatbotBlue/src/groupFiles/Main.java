@@ -38,7 +38,7 @@ public class Main {
 		String[] noResponses={"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
 		
 		while(inMainLoop){
-			print("Do you want to hear some jokes?");
+			print("Do you want to hear some jokes? Or ask me any questions?");
 			prevResponse = response;
 			response = promptInput().toLowerCase();
 			

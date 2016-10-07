@@ -14,7 +14,7 @@ public class TamannaAnnoy implements Chatbot{
 			"What's your favorite thing about Halloween?", 
 			"Do you know what your costume for Halloween is going to be?", 
 			"Are you going to go trick or treating?"};
-	private String[] chatbotAnnoyed = {"Didn't you just ask ", 
+	private String[] chatbotAnnoyed = {"Didn't you just say ", 
 			"Can't you think of anything new? You just said ", 
 			"Are you bad at making conversation? You should think of something new. "
 			+ "You already asked ", "This is disappointing. Ask me something different. "
@@ -51,25 +51,14 @@ public class TamannaAnnoy implements Chatbot{
 		}
 	}
 	
-	private boolean containsNo(String input){
-//		System.out.println("o");
-		String[] noResponses = {"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
-		for (int i=0; i < noResponses.length; i++){
-			String item=noResponses[i];
-			System.out.println(input.equals(item));
-			if(input.equals(noResponses[i])){
-				return true;
-			}
-		}
-		return false;
-	}
+
 
 	private void chatbotResponse(){
 		if(questionCount == 1){
 			//the chatbot asks its own questions
 			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
 			Main.print("I don't want to talk about that. " + chatbotQuestions[responseSelection]);
-		}else if(questionCount >= 3){
+		}else if(questionCount >=2){
 			/*when the user asks a question over 3 times, the chatbot becomes sad and 
 			gives an annoyed response*/
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
@@ -91,8 +80,6 @@ public class TamannaAnnoy implements Chatbot{
 		the userResponse than it returns true and goes into the talk method*/
 		
 		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
-			return true;
-		}else if((questionCount >= 1 && containsNo(userResponse) || containsNo(Main.prevResponse)) ){
 			return true;
 		}
 		return false;
