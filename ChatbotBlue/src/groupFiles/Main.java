@@ -44,10 +44,10 @@ public class Main {
 				inMainLoop=false;
 				tamanna.talk();
 			}
-			else if(anthony.isTriggered(response)){
-				inMainLoop=false;
-				anthony.talk();
-			}
+//			else if(anthony.isTriggered(response)){
+//				inMainLoop=false;
+//				anthony.talk();
+//			}
 			else if(response.equals("Yes")||jenniber.isTriggered(response)){
 				inMainLoop=false;
 				jenniber.talk();
@@ -140,23 +140,6 @@ public class Main {
 		kat= new KatMood();
 	}
 	
-	public static void demonstrateStringMethods(){
-		String text1 = new String("Hello World");
-		String text2 = "Hello World";
-			
-		if (text1.equals(text2))
-			print("These strings are equal");
-		else
-			print("These strings are NOT equal");
-		
-		String word1="Aardvark";
-		String word2="Zyzzyva";
-		
-		if(word1.compareTo(word2)<0){
-			print("word1 comes before word2");
-		}
-	}
-	
 	public static void print(String s){
 		 String printString = "";
 		 int cutoff = 50;
@@ -185,7 +168,7 @@ public class Main {
 
 			 printString +=currentCut+"\n";
 		 	}
-		 	System.out.println("                                                 Current Mood: "+kat.getMood()[0]+" MoodLevel: "+kat.getMood()[1]);	
+		 	System.out.println("                                                                           Current Mood: "+kat.getMood()[0]+" MoodLevel: "+kat.getMood()[1]);	
 		 	System.out.print(printString);
 	}
 }

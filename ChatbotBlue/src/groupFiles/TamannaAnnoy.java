@@ -40,14 +40,18 @@ public class TamannaAnnoy implements Chatbot{
 			
 			if(!isTriggered(userResponse)){
 				inResponseLoop = false;
+				Main.promptForever();
 			}
 		}
 	}
 	
 	private void chatbotResponse(){
-		
-		if (questionCount >= 3){
+		if(questionCount==1){
+			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
+			Main.print("I don't want to answer that. "+chatbotQuestions[responseSelection]);
+		}else if (questionCount >= 3){
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
+			Main.kat.improveMood(-1);
 			Main.print(chatbotAnnoyed[responseSelection] + "'" + responseBefore	+ "'");
 		}else{
 			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
