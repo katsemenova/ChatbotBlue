@@ -51,15 +51,13 @@ public class TamannaAnnoy implements Chatbot{
 		}
 	}
 	
-
-
 	private void chatbotResponse(){
 		if(questionCount == 1){
 			//the chatbot asks its own questions
 			int responseSelection = (int)(Math.random()*chatbotQuestions.length);
 			Main.print("I don't want to talk about that. " + chatbotQuestions[responseSelection]);
-		}else if(questionCount >=2){
-			/*when the user asks a question over 3 times, the chatbot becomes sad and 
+		}else if(questionCount >= 2){
+			/*when the user asks a question over 2 times, the chatbot becomes sad and 
 			gives an annoyed response*/
 			int responseSelection = (int)(Math.random()*chatbotAnnoyed.length);
 			Main.kat.improveMood(-1);
@@ -78,7 +76,6 @@ public class TamannaAnnoy implements Chatbot{
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
 		/*if the user asks a question and the previous response is the same as 
 		the userResponse than it returns true and goes into the talk method*/
-		
 		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
 			return true;
 		}
