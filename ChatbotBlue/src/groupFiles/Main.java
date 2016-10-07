@@ -36,6 +36,7 @@ public class Main {
 		inMainLoop =true;
 		String[] yesResponses={"Yes","yes","yea","Yea","Sure","sure","Ok", "ok","Alright","alright","yep","Yep","Why not","why not"};
 		String[] noResponses={"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
+		
 		while(inMainLoop){
 			print("Do you want to hear some jokes?");
 			prevResponse = response;
@@ -51,18 +52,17 @@ public class Main {
 					jenniber.talk();
 				}
 			}
-//			else if(anthony.isTriggered(response)){
-//				inMainLoop=false;
-//				anthony.talk();
-//			}
 			
-			//else 
 			if(kat.isTriggered(response)){
 				inMainLoop=false;
 				kat.talk();
-			}else 
+			}
+			else if(anthony.isTriggered(response)){
+				inMainLoop=false;
+				anthony.talk();
+			}else
 				print("I don't understand");
-		}
+			}
 	}
 	
 	public static int findKeyword(String searchString, String keyword, int startPosition) {

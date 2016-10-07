@@ -14,7 +14,7 @@ public class KatMood implements Chatbot{
 	private String lastInputedMood;
 	public String currentMood;
 	
-	public int moodLevel;
+	public int moodLevel;//used in other's code
 	private int complimentCntLoop; //this is the count for the whole program run
 	
 	private boolean inMoodLoop;
@@ -44,6 +44,12 @@ public class KatMood implements Chatbot{
 		}
 		
 	}
+	/**
+	 * helper method for talk
+	 * that checks which word is going to be used (happy/sad)
+	 * and then sets chatbots mood accordingly
+	 * @param userResponse and the start position that you want to search the string from
+	 */
 	private String moodSet(String userResponse,int strtPos) {
 		for(int i=0; i<happyWords.length; i++){
 			
@@ -63,6 +69,11 @@ public class KatMood implements Chatbot{
 		}
 		return "null";
 	}
+	/**
+	 * helper method for talk
+	 * that prints chatbot's response based on mood/compliment count
+	 * @param 
+	 */
 	private void chatbotResponse() {
 		if(moodWord.equals("null"))
 		{
@@ -85,6 +96,10 @@ public class KatMood implements Chatbot{
 			Main.print(responses[responseSelection]+currentMood);
 		}
 	}
+	/**
+	 * its a get method that main.java uses to print out the mood and moodlevel
+	 *  
+	 */
 	public String[] getMood(){
 		String moodLvl =""+moodLevel+"";
 		String[] array ={currentMood,moodLvl};
@@ -113,7 +128,11 @@ public class KatMood implements Chatbot{
 			
 		}
 	}
-	
+	/** 
+	 * helper method for moodSet();
+	 *finds the position of a word from the youArray, and reports its position 
+	 *this is used in 
+	 */
 	private int findAddressingPosition(String userResponse, int strtPos){
 		for(int i=0;i<youArray.length;i++){
 			int youPosition=Main.findKeyword(userResponse, youArray[i], strtPos);
