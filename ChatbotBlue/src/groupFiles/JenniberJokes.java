@@ -13,12 +13,22 @@ public class JenniberJokes implements Chatbot{
 	private String[][] jokes = {
 			{"What do ghosts eat for supper?","Spooketi"},
 			{"How did the glamorous ghoul earn her living?","She was a cover ghoul"},
-			{"How did the ghost patch his sheet?","With a pumpkin patch."}
+			{"How did the ghost patch his sheet?","With a pumpkin patch"},
+			{"Why didn’t the skeleton want to go to school?","His heart wasn’t in it"},
+			{"Why didn’t the skeleton go to the ball?","Because he had no BODY to go with"},
+			{"What do you get when you cross a witch with sand?","A sandwich!"},
+			{"What kind of dessert does a ghost like?","I scream!"},
+			{"What do mummies like listening to on Halloween?","Wrap music!"}
 	};
 	private String[][] jokeTriggers = {
 			{"supper","dinner","meal","food"}, 
 			{"living","job","work"},
-			{"sheets","sheet","blanket","blankets"}
+			{"sheets","sheet","blanket","blankets"},
+			{"school","class","subject","education"},
+			{"ball","dance","party"},
+			{"food","bread","lunch"},
+			{"dessert","sweets","winter"},
+			{"songs","song","music","beats","rythm"}
 		};
 	
 	public JenniberJokes(){
@@ -31,7 +41,7 @@ public class JenniberJokes implements Chatbot{
 		while(inJokeMode){
 			jokeCount++;
 			printResponse(triggerNum); //helper method
-			jokeResponse = Main.promptInput();
+			jokeResponse = Main.promptInput().toLowerCase();
 		}
 	}
 
@@ -41,7 +51,6 @@ public class JenniberJokes implements Chatbot{
 				triggerString = jokeTriggers[x][y];
 				if(Main.findKeyword(userInput, triggerString, 0)>=0){
 					triggerNum = x;
-					jokeCount = 0;
 					return true;
 				}
 			}	
@@ -50,7 +59,6 @@ public class JenniberJokes implements Chatbot{
 			if(Main.findKeyword(userInput, userResponse[z], 0)>=0){
 				triggerNum = getTriggerNum();
 				triggerString = " ";
-				jokeCount = 0;
 				return true;
 			}
 		}
@@ -67,16 +75,20 @@ public class JenniberJokes implements Chatbot{
 	private void printResponse(int triggerNum) {
 		//will exit while loop when user has guessed 3 times or answered the joke correctly
 		//else it will ask the joke
-		if(jokes[triggerNum][1].equals(jokeResponse)){
+		String jokeAnswer = jokes[triggerNum][1].toLowerCase();
+		
+		if(jokeAnswer.equals(jokeResponse)){
 			Main.print("That's right! The answer is: "+jokes[triggerNum][1]);
 			inJokeMode = false;
 			Main.kat.improveMood(1);
+			jokeCount = 0;
 			Main.promptForever();
 		}
 		else if(jokeCount>4){
 			Main.print("Since you do not seem to know the answer. The answer is: "+jokes[triggerNum][1]);
 			inJokeMode = false;
 			Main.kat.improveMood(1);
+			jokeCount = 0;
 			Main.promptForever();
 		}else if(jokeCount>1 && jokeCount<=4){
 			Main.kat.improveMood(-1);
