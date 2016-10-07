@@ -18,7 +18,8 @@ public class TamannaAnnoy implements Chatbot{
 			"Can't you think of anything new? You just said ", 
 			"Are you bad at making conversation? You should think of something new. "
 			+ "You already asked ", "This is disappointing. Ask me something different. "
-					+ "You already asked "};
+					+ "You already asked ", "I will haunt you for eternity if you don't "
+							+ "stop. You just asked "};
 	
 	private int questionCount;
 	
@@ -44,7 +45,6 @@ public class TamannaAnnoy implements Chatbot{
 			responseAfter = userResponse;
 			
 			if(!isTriggered(userResponse)){
-				Main.print("Cool.");
 				inResponseLoop = false;
 				Main.promptForever();
 			}
@@ -82,4 +82,3 @@ public class TamannaAnnoy implements Chatbot{
 		return false;
 	}
 }
-
