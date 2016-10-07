@@ -41,18 +41,17 @@ public class JenniberJokes implements Chatbot{
 				triggerString = jokeTriggers[x][y];
 				if(Main.findKeyword(userInput, triggerString, 0)>=0){
 					triggerNum = x;
+					jokeCount = 0;
 					return true;
 				}
-				else{
-					for(int z=0; z<userResponse.length; z++){
-						if(Main.findKeyword(userInput, userResponse[z], 0)>=0){
-							triggerNum = getTriggerNum();
-							triggerString = " ";
-							return true;
-						}
-					}
-				}
-
+			}	
+		}
+		for(int z=0; z<userResponse.length; z++){
+			if(Main.findKeyword(userInput, userResponse[z], 0)>=0){
+				triggerNum = getTriggerNum();
+				triggerString = " ";
+				jokeCount = 0;
+				return true;
 			}
 		}
 			
@@ -75,7 +74,7 @@ public class JenniberJokes implements Chatbot{
 			Main.promptForever();
 		}
 		else if(jokeCount>4){
-			Main.print("Since you do not seem to know the answer: The answer is "+jokes[triggerNum][1]);
+			Main.print("Since you do not seem to know the answer. The answer is: "+jokes[triggerNum][1]);
 			inJokeMode = false;
 			Main.kat.improveMood(1);
 			Main.promptForever();
@@ -87,8 +86,6 @@ public class JenniberJokes implements Chatbot{
 		}
 		else{
 			Main.print("Speaking of "+triggerString+". "+jokes[triggerNum][0]);
-		}
-		
+		}	
 	}
-
 }
