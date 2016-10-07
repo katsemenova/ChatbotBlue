@@ -39,8 +39,8 @@ public class Main {
 		while(inMainLoop){
 			print("Do you want to hear some jokes?");
 			prevResponse = response;
-			response = promptInput();
-
+			response = promptInput().toLowerCase();
+			
 			for (int i=0;i<yesResponses.length;i++){
 				if(response.equals(noResponses[i])||tamanna.isTriggered(response)){
 					inMainLoop=false;
