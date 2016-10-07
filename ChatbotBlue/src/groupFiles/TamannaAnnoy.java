@@ -71,10 +71,8 @@ public class TamannaAnnoy implements Chatbot{
 	public boolean isTriggered(String userInput) {
 		
 		userResponse = userInput;
-		
 		//converts the last character into a String
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
-		
 		/*if the user asks a question and the previous response is the same as 
 		the userResponse than it returns true and goes into the talk method*/
 		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
