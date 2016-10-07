@@ -49,6 +49,17 @@ public class TamannaAnnoy implements Chatbot{
 			}
 		}
 	}
+	
+	private boolean containsNo(String input){
+		
+		String[] noResponses = {"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
+		for (int i=0; i < noResponses.length; i++){
+			if(input.equals(noResponses[i])){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private void chatbotResponse(){
 		if(questionCount == 1){
@@ -75,9 +86,13 @@ public class TamannaAnnoy implements Chatbot{
 		String lastChar = ""+ userResponse.charAt(userResponse.length()-1);
 		/*if the user asks a question and the previous response is the same as 
 		the userResponse than it returns true and goes into the talk method*/
-		if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
+		if(containsNo(userResponse) && containsNo(responseBefore) && questionCount >= 1){
+			return true;
+		}
+		else if(lastChar.equals("?") && userResponse.equals(Main.prevResponse)){
 			return true;
 		}
 		return false;
 	}
 }
+
