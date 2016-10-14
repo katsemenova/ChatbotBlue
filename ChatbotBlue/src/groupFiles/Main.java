@@ -34,30 +34,35 @@ public class Main {
 
 	public static void promptForever() {
 		inMainLoop =true;
+		String[] yesResponses={"Yes","yes","yea","Yea","Sure","sure","Ok", "ok","Alright","alright","yep","Yep","Why not","why not"};
+		String[] noResponses={"No","no","nope","Nope","Nah","nah","never","never","NO","Not today","not today","Not really","not really","NOPE"};
+		
 		while(inMainLoop){
-			print("Do you want to hear some jokes?");
+			print("Do you want to hear some jokes? Or ask me any questions?");
 			prevResponse = response;
-			response = promptInput();
-
+			response = promptInput().toLowerCase();
 			
-			if(response.equals("No")||tamanna.isTriggered(response)){
+			for (int i=0;i<yesResponses.length;i++){
+				if(response.equals(noResponses[i])||tamanna.isTriggered(response)){
+					inMainLoop=false;
+					tamanna.talk();
+				}
+				else if(response.equals(yesResponses[i])||jenniber.isTriggered(response)){
+					inMainLoop=false;
+					jenniber.talk();
+				}
+			}
+			
+			if(kat.isTriggered(response)){
 				inMainLoop=false;
-				tamanna.talk();
+				kat.talk();
 			}
 			else if(anthony.isTriggered(response)){
 				inMainLoop=false;
 				anthony.talk();
-			}
-			else if(response.equals("Yes")||jenniber.isTriggered(response)){
-				inMainLoop=false;
-				jenniber.talk();
-			}
-			else if(kat.isTriggered(response)){
-				inMainLoop=false;
-				kat.talk();
-			}else 
+			}else
 				print("I don't understand");
-		}
+			}
 	}
 	
 	public static int findKeyword(String searchString, String keyword, int startPosition) {
@@ -140,23 +145,6 @@ public class Main {
 		kat= new KatMood();
 	}
 	
-	public static void demonstrateStringMethods(){
-		String text1 = new String("Hello World");
-		String text2 = "Hello World";
-			
-		if (text1.equals(text2))
-			print("These strings are equal");
-		else
-			print("These strings are NOT equal");
-		
-		String word1="Aardvark";
-		String word2="Zyzzyva";
-		
-		if(word1.compareTo(word2)<0){
-			print("word1 comes before word2");
-		}
-	}
-	
 	public static void print(String s){
 		 String printString = "";
 		 int cutoff = 50;
@@ -185,7 +173,7 @@ public class Main {
 
 			 printString +=currentCut+"\n";
 		 	}
-		 	System.out.println("                                                 Current Mood: "+kat.getMood()[0]+" MoodLevel: "+kat.getMood()[1]);	
+		 	System.out.println("                                                                           Current Mood: "+kat.getMood()[0]+" MoodLevel: "+kat.getMood()[1]);	
 		 	System.out.print(printString);
 	}
 }

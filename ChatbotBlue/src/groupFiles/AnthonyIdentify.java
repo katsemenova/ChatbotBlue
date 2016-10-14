@@ -15,7 +15,7 @@ public class AnthonyIdentify implements Chatbot{
 				" Turtles perhaps?",
 				"Could we get off of the topic of "+
 						keyword + "?"};
-	//done
+
 	@Override
 	public void talk() 
 	{
@@ -23,7 +23,6 @@ public class AnthonyIdentify implements Chatbot{
 		inLoop = true;
 		while(inLoop)
 		{
-			Main.print(changeOfSubject[(int) ((Math.random()*3) + 1)]);
 			//static call on promptInput method from 
 			//Main class 
 				Main.promptForever();
@@ -38,17 +37,14 @@ public class AnthonyIdentify implements Chatbot{
 		String[] sentence = sent.split(" ");//sentence is an array containing each word of the user's sentence as their own item.
 		
 		if (triggerCount == 0)
-		{	Main.print("stage1");					//triggerCount will be used to see if the keyword has been recorded or not,
+		{			    //triggerCount will be used to see if the keyword has been recorded or not,
 			checker = sentence; // and whether or not a sentence has been recorded or not to be used in comparisons 
 			triggerCount += 1;
 			return false;
 		}
-		//wooooork
-		else if (triggerCount == 1){
-			Main.print("stage 2");
-		System.out.println(triggerCount);
-		System.out.println(keyword);
-		for (int f = 0; f < sentence.length; f++)
+		else if (triggerCount == 1)
+		{
+			for (int f = 0; f < sentence.length; f++)
 			{
 				for(int d = 0; d < checker.length;d++)
 				{
@@ -59,30 +55,28 @@ public class AnthonyIdentify implements Chatbot{
 					}	
 				}	
 			}
-		return false;
+			return false;
 		}
 		
-		else if(triggerCount == 2)
-			{
-			Main.print("stage 3");
+		else if (triggerCount == 4)
+		{
+			triggerCount = 0;
+			return true;
+		}
+		
+		else if(triggerCount >= 2)
+		{
 			for (int s = 0; s < sent.length(); s++)
 			{
 				keyword = sentence[s];//The keyword is then used to simplify the function
 				triggerCount += 1;
 			}
-		return false;
+			return false;
 		}
-							
-		else if (triggerCount == 4)
-		{
-			Main.print("stage 4");
-			triggerCount = 0;
-			return true;
-		}
-						
+		
+		
 		else
 		{
-			Main.print(changeOfSubject[(int) ((Math.random()*3) + 1)]);
 			triggerCount = 0;//if nothing matches in the next sentence,the function will reset.
 			return false;
 		}	
